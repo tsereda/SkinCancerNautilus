@@ -29,6 +29,8 @@ spec:
           curl -L -o skin-cancer-malignant-vs-benign.zip\
             https://www.kaggle.com/api/v1/datasets/download/fanconic/skin-cancer-malignant-vs-benign
 
+          python "skin_cancer_vgg16-all experiments.py"
+
           sleep infinity
       volumeMounts:
         - name: git-repo

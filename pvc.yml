@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dcclass-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+  # linstor-sdsu ensures storage is provisioned in San Diego State University zone
+  # This matches the nodeSelector in our pods for optimal performance
+  storageClassName: linstor-sdsu

@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dlclass-train-pod
+spec:
+  nodeSelector:
+    topology.kubernetes.io/region: us-west
+    nautilus.io/linstor: "true"
+  containers:
+    - name: dlclass-trainer
+      image: gitlab-registry.nrp-nautilus.io/prp/jupyter-stack/prp
+      env:
+        - name: REPO_PATH
+          value: /app/deep_learning_classification
+      command:
+        - "bash"
+        - "-c"
+      args:
+        - |
+          # Clone repository
+          git clone https://github.com/LinaUSD/deep_learning_classification ${REPO_PATH}
+          cd ${REPO_PATH}
+
+          #!/bin/bash
+          curl -L -o ~/Downloads/skin-cancer-malignant-vs-benign.zip https://www.kaggle.com/api/v1/datasets/download/fanconic/skin-cancer-malignant-vs-benign
+         
+          sleep infinity
+      volumeMounts:
+        - name: git-repo
+          mountPath: /app
+        - name: data-volume
+          mountPath: /data
+        - name: dshm
+          mountPath: /dev/shm
+      resources:
+        limits:
+          memory: 24Gi
+          cpu: "12"
+          nvidia.com/gpu: "1"
+        requests:
+          memory: 20Gi
+          cpu: "10"
+          nvidia.com/gpu: "1"
+  volumes:
+    - name: git-repo
+      emptyDir: {}
+    - name: data-volume
+      persistentVolumeClaim:
+        claimName: dcclass-data-pvc
+    - name: dshm
+      emptyDir:
+        medium: Memory
+        sizeLimit: 8Gi
+  restartPolicy: Never

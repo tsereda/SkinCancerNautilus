@@ -18,7 +18,7 @@ spec:
       args:
         - |
           # Clone repository
-          git clone https://github.com/LinaUSD/deep_learning_classification ${REPO_PATH}
+          git clone https://github.com/tsereda/SkinCancerNautilus ${REPO_PATH}
           cd ${REPO_PATH}
 
           #!/bin/bash

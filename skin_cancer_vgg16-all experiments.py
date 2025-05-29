@@ -16,9 +16,9 @@ Data link: https://www.kaggle.com/datasets/fanconic/skin-cancer-malignant-vs-ben
 
 # I put the data folder inside googlecolab folder in my drive. the data has two subfolders: Train, and Test; each of these folders contains two subfolders: benign and malignant
 
-train_path ='/content/drive/MyDrive/Colab Notebooks/data/train'
+train_path ='train'
 
-test_path = '/content/drive/MyDrive/Colab Notebooks/data/test'
+test_path = 'test'
 
 from keras.layers import Input, Lambda, Dense, Flatten
 from keras.models import Model

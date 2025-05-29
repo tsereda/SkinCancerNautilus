@@ -22,8 +22,10 @@ spec:
           cd ${REPO_PATH}
 
           #!/bin/bash
-          curl -L -o ~/Downloads/skin-cancer-malignant-vs-benign.zip https://www.kaggle.com/api/v1/datasets/download/fanconic/skin-cancer-malignant-vs-benign
-         
+          #!/bin/bash
+          curl -L -o skin-cancer-malignant-vs-benign.zip\
+            https://www.kaggle.com/api/v1/datasets/download/fanconic/skin-cancer-malignant-vs-benign
+
           sleep infinity
       volumeMounts:
         - name: git-repo

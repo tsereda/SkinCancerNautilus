@@ -21,8 +21,9 @@ spec:
           git clone https://github.com/tsereda/SkinCancerNautilus ${REPO_PATH}
           cd ${REPO_PATH}
 
-          pip install tensorflow[and-cuda]
-          pip install --upgrade keras
+          pip install --upgrade tensorflow[and-cuda]
+          pip install "numpy<2"
+          #pip install --upgrade keras
 
           #!/bin/bash
           curl -L -o skin-cancer-malignant-vs-benign.zip\
